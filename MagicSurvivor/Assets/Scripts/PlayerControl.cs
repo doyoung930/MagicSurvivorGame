@@ -6,12 +6,19 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10.0f;
     [SerializeField] private float sprintSpeed = 15.0f;
-    
+    [SerializeField] private Camera mainCamera;
+
     private void Update()
+    {
+        MaintainCameraAngle();
+        MaintainCapsuleRotation();
+    }
+
+    private void FixedUpdate()
     {
         MovePlayer();
     }
-
+    
     private void MovePlayer()
     {
         float xThrow = GetHorizontalInput();
@@ -24,6 +31,21 @@ public class PlayerControl : MonoBehaviour
         Vector3 newPosition = transform.localPosition + offset;
 
         transform.localPosition = newPosition;
+    }
+
+    private void MaintainCameraAngle()
+    {
+        if (mainCamera)
+        {
+            Vector3 cameraRotation = mainCamera.transform.rotation.eulerAngles;
+            cameraRotation.x = 60; // x 각도를 60도로 설정
+            mainCamera.transform.rotation = Quaternion.Euler(cameraRotation);
+        }
+    }
+
+    private void MaintainCapsuleRotation()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 0); // 각도를 (0, 0, 0)으로 설정
     }
 
     private float GetHorizontalInput()
