@@ -4,25 +4,52 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    [SerializeField] float controlSpeed = 10f;
-    [SerializeField] float xRange = 10f;
-    [SerializeField] float yRange = 6f;
+    [SerializeField] private float moveSpeed = 10.0f;
+    [SerializeField] private float sprintSpeed = 15.0f;
+    
+    [SerializeField] private float xRange = 10f;
+    [SerializeField] private float yRange = 10f;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        float xThrwow = Input.GetAxis("Horizontal");
-        float yThrwow = Input.GetAxis("Vertical");
+        MovePlayer();
+    }
 
-        float xOffset = xThrwow * Time.deltaTime * controlSpeed;
-        float rawXPos = transform.localPosition.x + xOffset;
-        //float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);
+    private void MovePlayer()
+    {
+        float xThrow = GetHorizontalInput();
+        float yThrow = GetVerticalInput();
+        
+        float currentSpeed = GetCurrentSpeed();
 
-        float yOffset = yThrwow * Time.deltaTime * controlSpeed;
-        float rawYPos = transform.localPosition.z + yOffset;
-        //float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);
+        // Time.deltaTime을 곱하여 프레임 독립적인 이동 보장
+        Vector3 offset = new Vector3(xThrow, 0, yThrow) * (Time.deltaTime * currentSpeed);
+        Vector3 newPosition = transform.localPosition + offset;
 
+        transform.localPosition = newPosition;
+    }
 
-        transform.localPosition = new Vector3(rawXPos, transform.localPosition.y, rawYPos);
+    private float GetHorizontalInput()
+    {
+        // WASD 키 입력 처리
+        float xThrow = 0f;
+        if (Input.GetKey(KeyCode.A)) xThrow = -1f; // 왼쪽
+        if (Input.GetKey(KeyCode.D)) xThrow = 1f;  // 오른쪽
+        return xThrow;
+    }
+
+    private float GetVerticalInput()
+    {
+        // WASD 키 입력 처리
+        float yThrow = 0f;
+        if (Input.GetKey(KeyCode.W)) yThrow = 1f;   // 위쪽
+        if (Input.GetKey(KeyCode.S)) yThrow = -1f;  // 아래쪽
+        return yThrow;
+    }
+
+    private float GetCurrentSpeed()
+    {
+        // 현재 속도 반환
+        return Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : moveSpeed;
     }
 }
