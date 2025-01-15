@@ -7,9 +7,6 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float moveSpeed = 10.0f;
     [SerializeField] private float sprintSpeed = 15.0f;
     
-    [SerializeField] private float xRange = 10f;
-    [SerializeField] private float yRange = 10f;
-
     private void Update()
     {
         MovePlayer();
