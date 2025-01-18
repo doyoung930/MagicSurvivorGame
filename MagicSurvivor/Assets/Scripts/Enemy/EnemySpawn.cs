@@ -15,15 +15,15 @@ public class EnemySpawn : MonoBehaviour
     
         void SpawnEnemy()
         {
-            // 랜덤한 위치 생성
             Vector3 spawnPosition = new Vector3(
                 Random.Range(-spawnRange.x, spawnRange.x),
                 1,
                 Random.Range(-spawnRange.z, spawnRange.z)
             );
-    
-            // 적 소환
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+
+            // 적 소환 및 부모 설정
+            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            enemy.transform.parent = this.transform; // EnemySpawn 스크립트가 부착된 오브젝트의 자식으로 설정
         }
         
         
