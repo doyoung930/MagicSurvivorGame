@@ -21,11 +21,10 @@ public class SpearSpawn : MonoBehaviour
         // 현재 스크립트가 부착된 게임 오브젝트가 바라보는 방향
         Vector3 direction = transform.forward; 
         
-        
-        
         // 창 소환
         GameObject spear = Instantiate(spearPrefab, spawnPosition, Quaternion.identity);
         //spear.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        //spear.transform.parent = this.transform;
         spear.transform.forward = direction; // 창의 방향 설정
         
     }

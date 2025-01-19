@@ -15,12 +15,13 @@ public class ShieldSpawn : MonoBehaviour
 
     void Fire()
     {
-        Vector3 spawnPosition = transform.position + new Vector3(3, 0, 0); 
+        Vector3 spawnPosition = transform.position + new Vector3(5f, 0, 0); 
         
         
         
         
-        GameObject spear = Instantiate(shieldPrefab, spawnPosition, Quaternion.identity);
+        GameObject shield = Instantiate(shieldPrefab, spawnPosition, Quaternion.identity);
+        //shield.transform.parent = this.transform;
         //spear.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
         
     }
