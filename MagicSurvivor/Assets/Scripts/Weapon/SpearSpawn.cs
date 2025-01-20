@@ -23,8 +23,6 @@ public class SpearSpawn : MonoBehaviour
         
         // 창 소환
         GameObject spear = Instantiate(spearPrefab, spawnPosition, Quaternion.identity);
-        //spear.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-        //spear.transform.parent = this.transform;
         spear.transform.forward = direction; // 창의 방향 설정
         
     }

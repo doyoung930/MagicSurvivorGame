@@ -6,7 +6,6 @@ public class ShieldSpawn : MonoBehaviour
 {
     public GameObject shieldPrefab;
     [SerializeField] private int shieldLevel = 1;
-    [SerializeField] private int fireInterval = 1;
 
     void Start()
     {

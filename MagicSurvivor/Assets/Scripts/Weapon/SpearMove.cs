@@ -17,7 +17,6 @@ public class SpearMove : MonoBehaviour
 
     void Move()
     {
-        // 현재 방향으로 이동 (Z축 기준으로 90도 회전)
         float moveAmount = speed * Time.deltaTime; // 이동 거리 계산
         transform.position += transform.forward * moveAmount; // 위치 업데이트
 
