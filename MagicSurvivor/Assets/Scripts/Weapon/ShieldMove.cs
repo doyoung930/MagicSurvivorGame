@@ -6,6 +6,7 @@ public class ShieldMove : MonoBehaviour
 {
     private float rotationSpeed = 300f;
     private float distanceFromPlayer = 5f;
+    [SerializeField] private float damage = 100f;
     public Transform player;
     
     // Start is called before the first frame update
@@ -29,5 +30,31 @@ public class ShieldMove : MonoBehaviour
         transform.position = player.position + direction * distanceFromPlayer;
         
         transform.Rotate(0,rotationSpeed * Time.deltaTime , 0);
+    }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        Hit(other);
+    }
+
+    void Hit(Collider other)
+    {
+        
+        if (other == null) return;
+        
+        EnemyHealth target = other.GetComponent<EnemyHealth>();
+
+        if (target != null)
+        {
+            target.TakeDamage(damage);
+        }
+        
+       
+
+    }
+
+    void CreateHitImpact()
+    {
+        
     }
 }

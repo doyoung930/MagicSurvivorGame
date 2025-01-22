@@ -6,7 +6,7 @@ public class SpearMove : MonoBehaviour
 {
     [SerializeField] private float speed = 20f;
     [SerializeField] private float range = 30f;
-    [SerializeField] private int damage = 10;
+    [SerializeField] private float damage = 100f;
 
     private float traveledDistance = 0f; // 이동한 거리 저장
 
@@ -28,5 +28,33 @@ public class SpearMove : MonoBehaviour
         {
             Destroy(gameObject); // 범위를 초과하면 창 파괴
         }
+    }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        Hit(other);
+    }
+
+    void Hit(Collider other)
+    {
+        
+        if (other == null) return;
+        
+        EnemyHealth target = other.GetComponent<EnemyHealth>();
+
+        if (target != null)
+        {
+            Debug.Log("Hit" + target.name);
+            
+            target.TakeDamage(damage);
+        }
+        
+       
+
+    }
+
+    void CreateHitImpact()
+    {
+        
     }
 }

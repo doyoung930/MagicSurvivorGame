@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 664373041390374298}
   - component: {fileID: 841128543124317235}
+  - component: {fileID: 2777562010360527865}
   m_Layer: 0
   m_Name: Spear
   m_TagString: Untagged
@@ -45,9 +46,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad7ba5dcf6178f94585b118deaf4c762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 50
   range: 30
-  damage: 10
+  damage: 100
+--- !u!65 &2777562010360527865
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3161343500530932211}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3607216, y: 1, z: 3.693861}
+  m_Center: {x: 0.016216755, y: 0, z: -0.10812855}
 --- !u!1001 &5965627280682880880
 PrefabInstance:
   m_ObjectHideFlags: 0
