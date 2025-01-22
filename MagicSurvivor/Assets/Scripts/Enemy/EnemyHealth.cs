@@ -14,7 +14,7 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         hp -= damage;
-
+        
         if (hp <= 0){
             Die();
         }
@@ -24,6 +24,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (isDead) return;
         isDead = true;
+        Destroy(this.gameObject);
         //GetComponent<Animator>().SetTrigger("die");
     }
 }
