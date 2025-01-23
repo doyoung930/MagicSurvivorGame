@@ -7,6 +7,8 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float moveSpeed = 10.0f;
     [SerializeField] private float sprintSpeed = 15.0f;
     [SerializeField] private Camera mainCamera;
+    private int cameraY = 23;
+    private int cameraZ = 11;
     Rigidbody rb;
 
     private void Start()
@@ -49,8 +51,8 @@ public class PlayerControl : MonoBehaviour
             // 카메라의 새로운 위치 계산
             Vector3 cameraNewPosition = new Vector3(
                 transform.localPosition.x, 
-                transform.localPosition.y + 29, 
-                transform.localPosition.z - 15
+                transform.localPosition.y + cameraY, 
+                transform.localPosition.z - cameraZ
             );
             
             mainCamera.transform.localPosition = cameraNewPosition;
