@@ -16,7 +16,7 @@ public class PlayerExpSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        LevelUp();
     }
 
     // Update is called once per frame
