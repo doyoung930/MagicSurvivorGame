@@ -11,9 +11,27 @@ public class RandomCardSelector : MonoBehaviour
     public Image image1;
     public Image image2;
     public Image image3;
+
+    public float increaseSpeedAmount = 0.5f;
     
+    public Sprite speedUpSprite; 
     public void Upgrade()
     {
+        List<Sprite> selectedImages = GetRandomImages(images, 3);
+        
+        // 하위 UI의 이미지 변경
+        image1.sprite = selectedImages[0];
+        image2.sprite = selectedImages[1];
+        image3.sprite = selectedImages[2];
+    }
+
+    void Start()
+    {
+        // 버튼 클릭 이벤트 등록
+        image1.GetComponent<Button>().onClick.AddListener(() => OnImageClick(image1.sprite));
+        image2.GetComponent<Button>().onClick.AddListener(() => OnImageClick(image2.sprite));
+        image3.GetComponent<Button>().onClick.AddListener(() => OnImageClick(image3.sprite));
+        
         List<Sprite> selectedImages = GetRandomImages(images, 3);
         
         // 하위 UI의 이미지 변경
@@ -37,5 +55,20 @@ public class RandomCardSelector : MonoBehaviour
         }
 
         return selectedImages;
+    }
+    
+    private void OnImageClick(Sprite clickedSprite)
+    {
+        Debug.Log(clickedSprite + " is clicked");
+        // 클릭된 이미지가 SpeedUp인지 확인
+        if (clickedSprite == speedUpSprite)
+        {
+            // PlayerControl의 인스턴스를 찾아서 속도 증가
+            PlayerControl playerControl = FindObjectOfType<PlayerControl>();
+            if (playerControl != null)
+            {
+                playerControl.IncreaseSpeed(increaseSpeedAmount);
+            }
+        }
     }
 }

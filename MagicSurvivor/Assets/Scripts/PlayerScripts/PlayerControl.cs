@@ -100,4 +100,10 @@ public class PlayerControl : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
+    
+    public void IncreaseSpeed(float amount)
+    {
+        moveSpeed += amount;
+        Debug.Log("Move Speed increased to: " + moveSpeed);
+    }
 }
