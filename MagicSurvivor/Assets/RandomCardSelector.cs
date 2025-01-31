@@ -14,7 +14,12 @@ public class RandomCardSelector : MonoBehaviour
 
     public float increaseSpeedAmount = 0.5f;
     
-    public Sprite speedUpSprite; 
+    public Sprite speedUpSprite;
+    public Sprite damageUpSprite; 
+    public Sprite attackSpeedUpSprite; 
+    public Sprite arrowLevelUpSprite; 
+    public Sprite shieldLevelUpSprite; 
+    public Sprite spearLevelUpSprite; 
     public void Upgrade()
     {
         List<Sprite> selectedImages = GetRandomImages(images, 3);
@@ -69,6 +74,61 @@ public class RandomCardSelector : MonoBehaviour
             {
                 playerControl.IncreaseSpeed(increaseSpeedAmount);
             }
+        }
+        else if (clickedSprite == damageUpSprite)
+        {
+            ArrowMove arrowMove = FindObjectOfType<ArrowMove>();
+            ShieldMove shieldMove = FindObjectOfType<ShieldMove>();
+            SpearMove spearMove = FindObjectOfType<SpearMove>();
+            if (arrowMove != null)
+            {
+                arrowMove.IncreaseDamage();
+            }
+
+            if (shieldMove != null)
+            {
+                shieldMove.IncreaseDamage();
+            }
+
+            if (spearMove != null)
+            {
+                spearMove.IncreaseDamage();
+            }
+        }
+        else if (clickedSprite == attackSpeedUpSprite)
+        {
+            ArrowMove arrowMove = FindObjectOfType<ArrowMove>();
+            ShieldMove shieldMove = FindObjectOfType<ShieldMove>();
+            SpearMove spearMove = FindObjectOfType<SpearMove>();
+            if (arrowMove != null)
+            {
+                arrowMove.IncreaseSpeed();
+            }
+
+            if (shieldMove != null)
+            {
+                shieldMove.IncreaseSpeed();
+            }
+
+            if (spearMove != null)
+            {
+                spearMove.IncreaseSpeed();
+            }
+        }
+        else if (clickedSprite == arrowLevelUpSprite)
+        {
+            ArrowSpawn arrowSpawn = FindObjectOfType<ArrowSpawn>();
+            arrowSpawn.LevelUp();
+        }
+        else if (clickedSprite == shieldLevelUpSprite)
+        {
+            ShieldSpawn shieldSpawn = FindObjectOfType<ShieldSpawn>();
+            shieldSpawn.LevelUp();
+        }
+        else if (clickedSprite == spearLevelUpSprite)
+        {
+            SpearSpawn spearSpawn = FindObjectOfType<SpearSpawn>();
+            spearSpawn.LevelUp();
         }
     }
 }

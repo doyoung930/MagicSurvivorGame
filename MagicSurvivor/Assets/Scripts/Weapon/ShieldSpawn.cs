@@ -5,8 +5,8 @@ using UnityEngine;
 public class ShieldSpawn : MonoBehaviour
 {
     public GameObject shieldPrefab;
-    [SerializeField] private int shieldLevel = 1;
-
+    private int shieldLevel = 1;
+    
     void Start()
     {
         Fire();
@@ -15,14 +15,16 @@ public class ShieldSpawn : MonoBehaviour
     void Fire()
     {
         Vector3 spawnPosition = transform.position + new Vector3(5f, 0, 0); 
-        
-        
-        
-        
         GameObject shield = Instantiate(shieldPrefab, spawnPosition, Quaternion.identity);
-        //shield.transform.parent = this.transform;
-        //spear.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
         
+    }
+    
+    public void LevelUp()
+    {
+        shieldLevel++;
+        Debug.Log(shieldLevel);
+        ShieldMove shieldMove = FindObjectOfType<ShieldMove>();
+        shieldMove.IncreaseDamage();
     }
     
 }

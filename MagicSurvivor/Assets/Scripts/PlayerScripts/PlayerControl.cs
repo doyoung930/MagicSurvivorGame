@@ -106,4 +106,5 @@ public class PlayerControl : MonoBehaviour
         moveSpeed += amount;
         Debug.Log("Move Speed increased to: " + moveSpeed);
     }
+    
 }

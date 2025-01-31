@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ArrowMove : MonoBehaviour
 {
-    [SerializeField] private float speed = 20f;
-    [SerializeField] private float range = 30f;
-    [SerializeField] private float damage = 0f;
-
+    private float speed = 20f;
+    private float range = 30f;
+    private float damage = 0f;
+    private float increaseDamageAmount = 1f;
+    private float increaseSpeedAmount = 4f;
     private float traveledDistance = 0f; // 이동한 거리 저장
 
     void Update()
@@ -56,5 +57,15 @@ public class ArrowMove : MonoBehaviour
     void CreateHitImpact()
     {
         
+    }
+
+    public void IncreaseDamage()
+    {
+        damage += increaseDamageAmount;
+    }
+
+    public void IncreaseSpeed()
+    {
+        speed += increaseSpeedAmount;
     }
 }

@@ -5,9 +5,10 @@ using UnityEngine;
 public class SpearSpawn : MonoBehaviour
 {
     public GameObject spearPrefab;
-    [SerializeField] private int spearLevel = 1;
-    [SerializeField] private int fireInterval = 1;
-
+    private float spearLevel = 1;
+    private float fireInterval = 1;
+    private float decreaseFireInterval = 0.1f;
+    
     void Start()
     {
         // 1초 후부터 fireInterval 간격으로 Fire 메서드 호출
@@ -26,4 +27,21 @@ public class SpearSpawn : MonoBehaviour
         spear.transform.forward = direction; // 창의 방향 설정
         
     }
+    public void DecreaseFireInterval()
+    {
+        fireInterval -= decreaseFireInterval;
+        
+        CancelInvoke("Fire");
+        InvokeRepeating("Fire", fireInterval, fireInterval);
+    }
+
+    public void LevelUp()
+    {
+        spearLevel++;
+        DecreaseFireInterval();
+        SpearMove spearMove = FindObjectOfType<SpearMove>();
+        spearMove.IncreaseDamage();
+    }
+
+    
 }

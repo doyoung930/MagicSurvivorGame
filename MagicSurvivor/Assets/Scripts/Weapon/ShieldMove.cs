@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class ShieldMove : MonoBehaviour
 {
-    private float rotationSpeed = 300f;
+    private float rotationSpeed = 300f; 
     private float distanceFromPlayer = 5f;
-    [SerializeField] private float damage = 100f;
+    private float damage = 100f; 
     public Transform player;
+    private float increaseDamageAmount = 1f;
+    private float increaseSpeedAmount = 60f;
+    private float increaseDistance = 1f;
     
     // Start is called before the first frame update
     void Start()
@@ -56,5 +59,22 @@ public class ShieldMove : MonoBehaviour
     void CreateHitImpact()
     {
         
+    }
+    
+    public void IncreaseDamage()
+    {
+        damage += increaseDamageAmount;
+        
+        Debug.Log(damage);
+    }
+
+    public void IncreaseSpeed()
+    {
+        rotationSpeed += increaseSpeedAmount;
+    }
+
+    public void IncreaseDistance()
+    {
+        distanceFromPlayer += increaseDistance;
     }
 }

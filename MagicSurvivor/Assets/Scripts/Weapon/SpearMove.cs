@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class SpearMove : MonoBehaviour
 {
-    [SerializeField] private float speed = 20f;
-    [SerializeField] private float range = 30f;
-    [SerializeField] private float damage = 100f;
+    private float speed = 20f;
+    private float range = 30f;
+    private float damage = 100f;
+    [SerializeField] private float increaseDamageAmount = 1f;
+    [SerializeField] private float increaseSpeedAmount = 60f;
 
     private float traveledDistance = 0f; // 이동한 거리 저장
 
@@ -57,4 +59,16 @@ public class SpearMove : MonoBehaviour
     {
         
     }
+    
+    public void IncreaseDamage()
+    {
+        damage += increaseDamageAmount;
+    }
+
+    public void IncreaseSpeed()
+    {
+        speed += increaseSpeedAmount;
+    }
+    
+    
 }
