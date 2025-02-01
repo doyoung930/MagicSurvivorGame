@@ -13,8 +13,8 @@ public class PlayerExpSystem : MonoBehaviour
     private int level = 0;
 
     [SerializeField] private TextMeshProUGUI levelText;
-
     [SerializeField] private Slider expSlider;
+    [SerializeField] private GameObject upgradeUI;
     // 레벨에 따라 expMax를 증가시키는 메서드
     private int CalculateExpMax(int level)
     {
@@ -60,13 +60,26 @@ public class PlayerExpSystem : MonoBehaviour
         Debug.Log($"Level Up! New Level: {level}, New ExpMax: {expMax}");
         UpdateDisplay();
         UpdateSlider();
-        // Upgrade UI 보이도록
-        // 
+       
+        // 게임 정지
+        Time.timeScale = 0;
+        // Upgrade UI
+        upgradeUI.SetActive(true);
     }
 
     void UpdateSlider()
     {
         expSlider.maxValue = expMax;
         expSlider.value = exp;
+    }
+    
+    void Update()
+    {
+        // 게임이 정지된 상태에서 R 키를 누르면 게임 재개
+        if (Time.timeScale == 0 && Input.GetKeyDown(KeyCode.R))
+        {
+            Time.timeScale = 1; // 게임 시간 재개
+            upgradeUI.SetActive(false); // Upgrade UI 비활성화
+        }
     }
 }

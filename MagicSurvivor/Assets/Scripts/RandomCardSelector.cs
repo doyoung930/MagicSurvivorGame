@@ -20,6 +20,8 @@ public class RandomCardSelector : MonoBehaviour
     public Sprite arrowLevelUpSprite; 
     public Sprite shieldLevelUpSprite; 
     public Sprite spearLevelUpSprite; 
+    
+    [SerializeField] private GameObject upgradeUI; // Upgrade UI 추가
     public void Upgrade()
     {
         List<Sprite> selectedImages = GetRandomImages(images, 3);
@@ -73,6 +75,8 @@ public class RandomCardSelector : MonoBehaviour
             if (playerControl != null)
             {
                 playerControl.IncreaseSpeed(increaseSpeedAmount);
+                upgradeUI.SetActive(false);
+                Time.timeScale = 1;
             }
         }
         else if (clickedSprite == damageUpSprite)
@@ -93,6 +97,8 @@ public class RandomCardSelector : MonoBehaviour
             if (spearMove != null)
             {
                 spearMove.IncreaseDamage();
+                upgradeUI.SetActive(false);
+                Time.timeScale = 1;
             }
         }
         else if (clickedSprite == attackSpeedUpSprite)
@@ -113,22 +119,41 @@ public class RandomCardSelector : MonoBehaviour
             if (spearMove != null)
             {
                 spearMove.IncreaseSpeed();
+                upgradeUI.SetActive(false);
+                Time.timeScale = 1;
             }
         }
         else if (clickedSprite == arrowLevelUpSprite)
         {
             ArrowSpawn arrowSpawn = FindObjectOfType<ArrowSpawn>();
-            arrowSpawn.LevelUp();
+
+            if (arrowSpawn != null)
+            {
+                arrowSpawn.LevelUp();
+                upgradeUI.SetActive(false);
+                Time.timeScale = 1;
+            }
         }
         else if (clickedSprite == shieldLevelUpSprite)
         {
             ShieldSpawn shieldSpawn = FindObjectOfType<ShieldSpawn>();
-            shieldSpawn.LevelUp();
+
+            if (shieldSpawn != null)
+            {
+                shieldSpawn.LevelUp();
+                upgradeUI.SetActive(false);
+                Time.timeScale = 1;
+            }
         }
         else if (clickedSprite == spearLevelUpSprite)
         {
             SpearSpawn spearSpawn = FindObjectOfType<SpearSpawn>();
-            spearSpawn.LevelUp();
+            if (spearSpawn != null)
+            {
+                spearSpawn.LevelUp();
+                upgradeUI.SetActive(false);
+                Time.timeScale = 1;
+            }
         }
     }
 }
