@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class PlayerExpSystem : MonoBehaviour
 {
-
     private int exp = 0;
-    private int expMax = 0;
+    private int expMax = 1;
     
     private int level = 0;
-    private int levelMax = 0;
 
-    
+    // 레벨에 따라 expMax를 증가시키는 메서드
+    private int CalculateExpMax(int level)
+    {
+        // 예: 레벨에 따라 expMax를 1.5배씩 증가시키기
+        return Mathf.FloorToInt(1 * Mathf.Pow(1.5f, level));
+    }
     
     // Start is called before the first frame update
     void Start()
     {
+        expMax = CalculateExpMax(level); // 초기 expMax 설정
         LevelUp();
     }
 
@@ -23,6 +27,12 @@ public class PlayerExpSystem : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void IncreaseExp(int amount)
+    {
+        exp += amount;
+        CheckExp();
     }
 
     void CheckExp()
@@ -37,9 +47,10 @@ public class PlayerExpSystem : MonoBehaviour
     void LevelUp()
     {
         level++;
+        expMax = CalculateExpMax(level); // 레벨업 시 expMax 증가
+        Debug.Log($"Level Up! New Level: {level}, New ExpMax: {expMax}");
         
         // Upgrade UI 보이도록
-        
         // 
     }
 }

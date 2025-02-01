@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ExpPickup : MonoBehaviour
 {
-    [SerializeField] private float increaseExp = 1f;
+    [SerializeField] private int increaseExp = 1;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +12,12 @@ public class ExpPickup : MonoBehaviour
         {
             Destroy(this.gameObject);
             
+            PlayerExpSystem playerExpSystem = FindObjectOfType<PlayerExpSystem>();
+
+            if (playerExpSystem != null)
+            {
+                playerExpSystem.IncreaseExp(increaseExp);
+            }
             
         }
     }
