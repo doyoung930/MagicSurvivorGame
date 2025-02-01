@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class PlayerExpSystem : MonoBehaviour
@@ -12,7 +13,8 @@ public class PlayerExpSystem : MonoBehaviour
     private int level = 0;
 
     [SerializeField] private TextMeshProUGUI levelText;
-    
+
+    [SerializeField] private Slider expSlider;
     // 레벨에 따라 expMax를 증가시키는 메서드
     private int CalculateExpMax(int level)
     {
@@ -25,6 +27,8 @@ public class PlayerExpSystem : MonoBehaviour
     {
         expMax = CalculateExpMax(level); // 초기 expMax 설정
         LevelUp();
+        UpdateDisplay();
+        UpdateSlider();
     }
 
     // Update is called once per frame
@@ -37,6 +41,7 @@ public class PlayerExpSystem : MonoBehaviour
     {
         exp += amount;
         CheckExp();
+        UpdateSlider();
     }
 
     void CheckExp()
@@ -54,7 +59,14 @@ public class PlayerExpSystem : MonoBehaviour
         expMax = CalculateExpMax(level); // 레벨업 시 expMax 증가
         Debug.Log($"Level Up! New Level: {level}, New ExpMax: {expMax}");
         UpdateDisplay();
+        UpdateSlider();
         // Upgrade UI 보이도록
         // 
+    }
+
+    void UpdateSlider()
+    {
+        expSlider.maxValue = expMax;
+        expSlider.value = exp;
     }
 }
