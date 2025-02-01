@@ -46,8 +46,6 @@ public class SpearMove : MonoBehaviour
 
         if (target != null)
         {
-            Debug.Log("Hit" + target.name);
-            
             target.TakeDamage(damage);
         }
         

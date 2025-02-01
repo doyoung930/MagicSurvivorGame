@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float hp = 100f;
-    
+    [SerializeField]
     private bool isDead = false;
     
     
@@ -26,8 +26,15 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
         Destroy(this.gameObject);
         //GetComponent<Animator>().SetTrigger("die");
-        
-        
+
+        ExpSpawn expSpawn = FindObjectOfType<ExpSpawn>();
+        if (expSpawn != null)
+        {
+            Debug.Log("Exp Spawn");
+            expSpawn.SpawnExp(transform.position);
+        }
+
+
     }
     
     

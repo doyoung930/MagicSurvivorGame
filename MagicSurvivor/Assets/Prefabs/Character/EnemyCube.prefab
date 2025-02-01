@@ -115,10 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4688acad7df5c7348b24a5c73640f6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
-  exp: 1
-  dmg: 5
-  speed: 5
 --- !u!195 &1324515371380078073
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -168,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 100
+  isDead: 0
 --- !u!54 &3926632972163932057
 Rigidbody:
   m_ObjectHideFlags: 0
