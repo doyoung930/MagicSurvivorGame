@@ -111,3 +111,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increaseExp: 1
+  followDistance: 3
+  followSpeed: 20
