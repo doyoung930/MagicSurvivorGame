@@ -30,7 +30,6 @@ public class EnemyHealth : MonoBehaviour
         ExpSpawn expSpawn = FindObjectOfType<ExpSpawn>();
         if (expSpawn != null)
         {
-            Debug.Log("Exp Spawn");
             expSpawn.SpawnExp(transform.position);
         }
 

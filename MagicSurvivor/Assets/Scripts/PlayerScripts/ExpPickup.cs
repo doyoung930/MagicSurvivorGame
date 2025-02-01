@@ -10,7 +10,9 @@ public class ExpPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player collid");
+            Destroy(this.gameObject);
+            
+            
         }
     }
     

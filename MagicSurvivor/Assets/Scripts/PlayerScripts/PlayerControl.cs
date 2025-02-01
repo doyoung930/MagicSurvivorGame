@@ -96,7 +96,6 @@ public class PlayerControl : MonoBehaviour
     // 충돌 이후 처리
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log("hh");
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
