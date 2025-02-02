@@ -9,7 +9,7 @@ public class ShieldMove : MonoBehaviour
     private float damage = 100f; 
     public Transform player;
     private float increaseDamageAmount = 1f;
-    private float increaseSpeedAmount = 60f;
+    private float increaseSpeedAmount = 30f;
     private float increaseDistance = 1f;
     
     // Start is called before the first frame update
@@ -61,20 +61,5 @@ public class ShieldMove : MonoBehaviour
         
     }
     
-    public void IncreaseDamage()
-    {
-        damage += increaseDamageAmount;
-        
-        Debug.Log(damage);
-    }
-
-    public void IncreaseSpeed()
-    {
-        rotationSpeed += increaseSpeedAmount;
-    }
-
-    public void IncreaseDistance()
-    {
-        distanceFromPlayer += increaseDistance;
-    }
+    
 }

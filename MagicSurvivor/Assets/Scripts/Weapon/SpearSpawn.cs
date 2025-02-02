@@ -6,6 +6,9 @@ public class SpearSpawn : MonoBehaviour
 {
     public GameObject spearPrefab;
     private float spearLevel = 1;
+    private int damageLevel = 0;
+    private int speedLevel = 0;
+    
     private float fireInterval = 1;
     private float decreaseFireInterval = 0.1f;
     
@@ -26,6 +29,14 @@ public class SpearSpawn : MonoBehaviour
         GameObject spear = Instantiate(spearPrefab, spawnPosition, Quaternion.identity);
         spear.transform.forward = direction; // 창의 방향 설정
         
+        SpearMove spearMove = spear.GetComponent<SpearMove>();
+
+        if (spearMove != null)
+        {
+            spearMove.SetDamage(spearMove.GetCurrentDamage() + (damageLevel * 5f));
+            spearMove.SetSpeed(spearMove.GetCurrentDamage() + (speedLevel * 5f));
+        }
+        
     }
     public void DecreaseFireInterval()
     {
@@ -39,9 +50,18 @@ public class SpearSpawn : MonoBehaviour
     {
         spearLevel++;
         DecreaseFireInterval();
-        SpearMove spearMove = FindObjectOfType<SpearMove>();
-        spearMove.IncreaseDamage();
+        damageLevel++;
+        speedLevel++;
     }
 
+    public void DamageLevelUp()
+    {
+        damageLevel++;
+    }
+
+    public void SpeedLevelUp()
+    {
+        spearLevel++;
+    }
     
 }

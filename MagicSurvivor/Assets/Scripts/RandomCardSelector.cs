@@ -81,44 +81,44 @@ public class RandomCardSelector : MonoBehaviour
         }
         else if (clickedSprite == damageUpSprite)
         {
-            ArrowMove arrowMove = FindObjectOfType<ArrowMove>();
-            ShieldMove shieldMove = FindObjectOfType<ShieldMove>();
-            SpearMove spearMove = FindObjectOfType<SpearMove>();
-            if (arrowMove != null)
+            ArrowSpawn arrowSpawn = FindObjectOfType<ArrowSpawn>();
+            ShieldSpawn shieldSpawn = FindObjectOfType<ShieldSpawn>();
+            SpearSpawn spearSpawn = FindObjectOfType<SpearSpawn>();
+            if (arrowSpawn != null)
             {
-                arrowMove.IncreaseDamage();
+                arrowSpawn.DamageLevelUp();
             }
 
-            if (shieldMove != null)
+            if (shieldSpawn != null)
             {
-                shieldMove.IncreaseDamage();
+                shieldSpawn.DamageLevelUp();
             }
 
-            if (spearMove != null)
+            if (spearSpawn != null)
             {
-                spearMove.IncreaseDamage();
+                spearSpawn.DamageLevelUp();
                 upgradeUI.SetActive(false);
                 Time.timeScale = 1;
             }
         }
         else if (clickedSprite == attackSpeedUpSprite)
         {
-            ArrowMove arrowMove = FindObjectOfType<ArrowMove>();
-            ShieldMove shieldMove = FindObjectOfType<ShieldMove>();
-            SpearMove spearMove = FindObjectOfType<SpearMove>();
-            if (arrowMove != null)
+            ArrowSpawn arrowSpawn = FindObjectOfType<ArrowSpawn>();
+            ShieldSpawn shieldSpawn = FindObjectOfType<ShieldSpawn>();
+            SpearSpawn spearSpawn = FindObjectOfType<SpearSpawn>();
+            if (arrowSpawn != null)
             {
-                arrowMove.IncreaseSpeed();
+                arrowSpawn.SpeedLevelUp();
             }
 
-            if (shieldMove != null)
+            if (shieldSpawn != null)
             {
-                shieldMove.IncreaseSpeed();
+                shieldSpawn.SpeedLevelUp();
             }
 
-            if (spearMove != null)
+            if (spearSpawn != null)
             {
-                spearMove.IncreaseSpeed();
+                spearSpawn.SpeedLevelUp();
                 upgradeUI.SetActive(false);
                 Time.timeScale = 1;
             }

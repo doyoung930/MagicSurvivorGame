@@ -8,7 +8,7 @@ public class SpearMove : MonoBehaviour
     private float range = 30f;
     private float damage = 100f;
     [SerializeField] private float increaseDamageAmount = 1f;
-    [SerializeField] private float increaseSpeedAmount = 60f;
+    [SerializeField] private float increaseSpeedAmount = 5f;
 
     private float traveledDistance = 0f; // 이동한 거리 저장
 
@@ -58,15 +58,23 @@ public class SpearMove : MonoBehaviour
         
     }
     
-    public void IncreaseDamage()
+    public float GetCurrentSpeed()
     {
-        damage += increaseDamageAmount;
+        return speed; // 현재 속도 반환 메서드 추가
+    }
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed; // 속도 설정 메서드 추가
     }
 
-    public void IncreaseSpeed()
+    public float GetCurrentDamage()
     {
-        speed += increaseSpeedAmount;
+        return damage;
     }
-    
+
+    public void SetDamage(float newDamage)
+    {
+        damage = newDamage;
+    }
     
 }

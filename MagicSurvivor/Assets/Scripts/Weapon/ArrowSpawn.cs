@@ -5,8 +5,12 @@ using UnityEngine;
 public class ArrowSpawn : MonoBehaviour
 {
     [SerializeField] private GameObject arrowPrefab;
-    private int arrowLevel = 1;
+    private int arrowLevel = 1; // arrow Level
+    private int damageLevel = 0;
+    private int speedLevel = 0;
+    
     private float fireInterval = 1f;
+    
     private float decreaseFireInterval = 0.1f;
 
     [SerializeField] private float range = 10f;
@@ -18,7 +22,7 @@ public class ArrowSpawn : MonoBehaviour
     void Start()
     {
         fireTimer = fireInterval; // 타이머 초기화
-    }
+    }       
 
     void Update()
     {
@@ -78,6 +82,13 @@ public class ArrowSpawn : MonoBehaviour
         
         GameObject arrow = Instantiate(arrowPrefab, spawnPosition, Quaternion.identity);
         arrow.transform.forward = direction; 
+        
+        ArrowMove arrowMove = arrow.GetComponent<ArrowMove>();
+        if (arrowMove != null)
+        {
+            arrowMove.SetDamage(arrowMove.GetCurrentDamage() + (damageLevel * 5f));
+            arrowMove.SetSpeed(arrowMove.GetCurrentSpeed() + (speedLevel * 5f));
+        }
     }
     
     public void DecreaseFireInterval()
@@ -91,9 +102,18 @@ public class ArrowSpawn : MonoBehaviour
     public void LevelUp()
     {
         arrowLevel++;
+        damageLevel++;
+        speedLevel++;
         DecreaseFireInterval();
-        ArrowMove arrowMove = FindObjectOfType<ArrowMove>();
-        //arrowMove.IncreaseSpeed();
-        arrowMove.IncreaseDamage();
+    }
+
+    public void DamageLevelUp()
+    {
+        damageLevel++;
+    }
+
+    public void SpeedLevelUp()
+    {
+        speedLevel++;
     }
 }

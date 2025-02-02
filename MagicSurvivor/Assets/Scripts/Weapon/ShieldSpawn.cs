@@ -6,7 +6,9 @@ public class ShieldSpawn : MonoBehaviour
 {
     public GameObject shieldPrefab;
     private int shieldLevel = 1;
-    
+    private float damageLevel = 1;
+    private float speedLevel = 1;
+    private float distanceLevel = 1;
     void Start()
     {
         Fire();
@@ -22,9 +24,19 @@ public class ShieldSpawn : MonoBehaviour
     public void LevelUp()
     {
         shieldLevel++;
-        Debug.Log(shieldLevel);
-        ShieldMove shieldMove = FindObjectOfType<ShieldMove>();
-        shieldMove.IncreaseDamage();
+        speedLevel++;
+        damageLevel++;
+        distanceLevel++;
+    }
+
+    public void SpeedLevelUp()
+    {
+        shieldLevel++;
+    }
+
+    public void DamageLevelUp()
+    {
+        damageLevel++;
     }
     
 }
