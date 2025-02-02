@@ -60,12 +60,16 @@ public class ShieldSpawn : MonoBehaviour
 
     public void SpeedLevelUp()
     {
-        shieldLevel++;
+        speedLevel++;
     }
 
     public void DamageLevelUp()
     {
         damageLevel++;
     }
-    
+
+    public int GetShieldLevel()
+    {
+        return shieldLevel;
+    }
 }

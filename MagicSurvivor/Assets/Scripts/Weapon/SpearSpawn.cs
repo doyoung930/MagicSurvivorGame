@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpearSpawn : MonoBehaviour
 {
     public GameObject spearPrefab;
-    private float spearLevel = 1;
+    private int spearLevel = 1;
     private int damageLevel = 0;
     private int speedLevel = 0;
     
@@ -49,6 +49,7 @@ public class SpearSpawn : MonoBehaviour
     public void LevelUp()
     {
         spearLevel++;
+        Debug.Log(spearLevel);
         DecreaseFireInterval();
         damageLevel++;
         speedLevel++;
@@ -61,7 +62,12 @@ public class SpearSpawn : MonoBehaviour
 
     public void SpeedLevelUp()
     {
-        spearLevel++;
+        speedLevel++;
+        
+        
     }
-    
+    public int GetSpearLevel()
+    {
+        return spearLevel;
+    }
 }

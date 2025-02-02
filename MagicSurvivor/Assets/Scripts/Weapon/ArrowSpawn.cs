@@ -116,4 +116,9 @@ public class ArrowSpawn : MonoBehaviour
     {
         speedLevel++;
     }
+
+    public int GetArrowLevel()
+    {
+        return arrowLevel;
+    }
 }

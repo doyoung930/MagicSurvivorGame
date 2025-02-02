@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class RandomCardSelector : MonoBehaviour
 {
     // Start is called before the first frame update
-    
     public Sprite[] images;
     public Image image1;
     public Image image2;
     public Image image3;
-
+    
+    
+    
     public float increaseSpeedAmount = 0.5f;
     
     public Sprite speedUpSprite;
@@ -22,6 +23,8 @@ public class RandomCardSelector : MonoBehaviour
     public Sprite spearLevelUpSprite; 
     
     [SerializeField] private GameObject upgradeUI; // Upgrade UI 추가
+
+    private int maxLevel = 2;
     public void Upgrade()
     {
         List<Sprite> selectedImages = GetRandomImages(images, 3);
@@ -63,10 +66,25 @@ public class RandomCardSelector : MonoBehaviour
 
         return selectedImages;
     }
+
+    private void RemoveImage(Sprite imageToRemove)
+    {
+        if (imageToRemove == null) return;
+        
+        // 기존 이미지를 List로 변환
+        List<Sprite> imageList = new List<Sprite>(images);
+    
+        // 제거할 이미지가 List에 존재하는지 확인
+        if (imageList.Remove(imageToRemove))
+        {
+            // List의 내용을 배열로 변환하여 images에 저장
+            images = imageList.ToArray();
+        }
+
+    }
     
     private void OnImageClick(Sprite clickedSprite)
     {
-        Debug.Log(clickedSprite + " is clicked");
         // 클릭된 이미지가 SpeedUp인지 확인
         if (clickedSprite == speedUpSprite)
         {
@@ -130,6 +148,10 @@ public class RandomCardSelector : MonoBehaviour
             if (arrowSpawn != null)
             {
                 arrowSpawn.LevelUp();
+                if (arrowSpawn.GetArrowLevel() == maxLevel) // shieldLevel이 5일 때
+                {
+                    RemoveImage(clickedSprite);
+                }
                 upgradeUI.SetActive(false);
                 Time.timeScale = 1;
             }
@@ -141,8 +163,14 @@ public class RandomCardSelector : MonoBehaviour
             if (shieldSpawn != null)
             {
                 shieldSpawn.LevelUp();
+                if (shieldSpawn.GetShieldLevel() == maxLevel) // shieldLevel이 5일 때
+                {
+                    RemoveImage(clickedSprite);
+                }
                 upgradeUI.SetActive(false);
                 Time.timeScale = 1;
+                
+                
             }
         }
         else if (clickedSprite == spearLevelUpSprite)
@@ -151,6 +179,10 @@ public class RandomCardSelector : MonoBehaviour
             if (spearSpawn != null)
             {
                 spearSpawn.LevelUp();
+                if (spearSpawn.GetSpearLevel() == maxLevel) // shieldLevel이 5일 때
+                {
+                    RemoveImage(clickedSprite);
+                }
                 upgradeUI.SetActive(false);
                 Time.timeScale = 1;
             }
