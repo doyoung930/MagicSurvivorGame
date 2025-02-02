@@ -15,6 +15,9 @@ public class PlayerExpSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private Slider expSlider;
     [SerializeField] private GameObject upgradeUI;
+    
+    private RandomCardSelector randomCardSelector;
+    
     // 레벨에 따라 expMax를 증가시키는 메서드
     private int CalculateExpMax(int level)
     {
@@ -29,6 +32,8 @@ public class PlayerExpSystem : MonoBehaviour
         LevelUp();
         UpdateDisplay();
         UpdateSlider();
+        
+        randomCardSelector = upgradeUI.GetComponentInChildren<RandomCardSelector>();
     }
 
     // Update is called once per frame
@@ -64,6 +69,7 @@ public class PlayerExpSystem : MonoBehaviour
         // 게임 정지
         Time.timeScale = 0;
         // Upgrade UI
+        randomCardSelector?.Upgrade();
         upgradeUI.SetActive(true);
     }
 
@@ -80,6 +86,7 @@ public class PlayerExpSystem : MonoBehaviour
         {
             Time.timeScale = 1; // 게임 시간 재개
             upgradeUI.SetActive(false); // Upgrade UI 비활성화
+            
         }
     }
 }
