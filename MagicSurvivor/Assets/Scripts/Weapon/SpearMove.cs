@@ -7,8 +7,6 @@ public class SpearMove : MonoBehaviour
     private float speed = 20f;
     private float range = 30f;
     private float damage = 100f;
-    [SerializeField] private float increaseDamageAmount = 1f;
-    [SerializeField] private float increaseSpeedAmount = 5f;
 
     private float traveledDistance = 0f; // 이동한 거리 저장
 

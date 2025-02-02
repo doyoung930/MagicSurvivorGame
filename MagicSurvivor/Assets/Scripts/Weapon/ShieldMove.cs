@@ -8,33 +8,38 @@ public class ShieldMove : MonoBehaviour
     private float distanceFromPlayer = 5f;
     private float damage = 100f; 
     public Transform player;
-    private float increaseDamageAmount = 1f;
-    private float increaseSpeedAmount = 30f;
-    private float increaseDistance = 1f;
-    
-    // Start is called before the first frame update
+
+    private float currentAngle; // 현재 각도
+
+    public void Initialize(float initialAngle)
+    {
+        currentAngle = initialAngle; // 초기 각도 설정
+    }
+
     void Start()
     {
-        // 플레이어 오브젝트를 찾습니다. "Player"는 플레이어 오브젝트의 이름입니다.
         player = GameObject.Find("PlayerCapsule").transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // 방패의 현재 각도 계산
-        float angle = rotationSpeed * Time.deltaTime;
+        // 방패의 각도를 업데이트
+        currentAngle += rotationSpeed * Time.deltaTime; // Time.deltaTime 사용
 
-        // 방패의 위치를 플레이어를 중심으로 원운동
-        transform.RotateAround(player.position, Vector3.up, angle);
+        // 각도를 라디안으로 변환
+        float radians = currentAngle * Mathf.Deg2Rad;
 
-        // 방패가 플레이어로부터 일정 거리를 유지하도록 설정
-        Vector3 direction = (transform.position - player.position).normalized;
-        transform.position = player.position + direction * distanceFromPlayer;
-        
-        transform.Rotate(0,rotationSpeed * Time.deltaTime , 0);
+        // 새로운 위치 계산
+        float x = Mathf.Cos(radians) * distanceFromPlayer;
+        float z = Mathf.Sin(radians) * distanceFromPlayer;
+
+        // 방패의 위치 설정
+        transform.position = new Vector3(player.position.x + x, player.position.y, player.position.z + z);
+
+        // 방패가 항상 플레이어를 바라보도록 회전
+        transform.LookAt(player.position);
     }
-    
+
     void OnTriggerEnter(Collider other)
     {
         Hit(other);
@@ -42,24 +47,32 @@ public class ShieldMove : MonoBehaviour
 
     void Hit(Collider other)
     {
-        
         if (other == null) return;
-        
-        EnemyHealth target = other.GetComponent<EnemyHealth>();
 
+        EnemyHealth target = other.GetComponent<EnemyHealth>();
         if (target != null)
         {
             target.TakeDamage(damage);
         }
-        
-       
-
     }
 
-    void CreateHitImpact()
+    public float GetCurrentSpeed()
     {
-        
+        return rotationSpeed;
     }
-    
-    
+
+    public void SetSpeed(float newSpeed)
+    {
+        rotationSpeed = newSpeed;
+    }
+
+    public float GetCurrentDamage()
+    {
+        return damage;
+    }
+
+    public void SetDamage(float newDamage)
+    {
+        damage = newDamage;
+    }
 }

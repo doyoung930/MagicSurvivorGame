@@ -34,7 +34,7 @@ public class SpearSpawn : MonoBehaviour
         if (spearMove != null)
         {
             spearMove.SetDamage(spearMove.GetCurrentDamage() + (damageLevel * 5f));
-            spearMove.SetSpeed(spearMove.GetCurrentDamage() + (speedLevel * 5f));
+            spearMove.SetSpeed(spearMove.GetCurrentSpeed() + (speedLevel * 5f));
         }
         
     }
