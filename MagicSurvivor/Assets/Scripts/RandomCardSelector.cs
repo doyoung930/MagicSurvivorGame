@@ -21,6 +21,8 @@ public class RandomCardSelector : MonoBehaviour
     public Sprite arrowLevelUpSprite; 
     public Sprite shieldLevelUpSprite; 
     public Sprite spearLevelUpSprite;
+    
+    public Sprite hpRecoverySprite;
 
     private int speedLevel = 0;
     private int damageLevel = 0;
@@ -61,7 +63,11 @@ public class RandomCardSelector : MonoBehaviour
 
         for (int i = 0; i < numberOfImages; i++)
         {
-            if (imageList.Count == 0) break;
+            if (imageList.Count == 0)
+            {
+                selectedImages.Add(hpRecoverySprite);
+                break;
+            }
 
             int randomIndex = Random.Range(0, imageList.Count);
             selectedImages.Add(imageList[randomIndex]);
@@ -208,6 +214,11 @@ public class RandomCardSelector : MonoBehaviour
                 upgradeUI.SetActive(false);
                 Time.timeScale = 1;
             }
+        }
+        else if (clickedSprite == hpRecoverySprite)
+        {
+            upgradeUI.SetActive(false);
+            Time.timeScale = 1;
         }
     }
 }
