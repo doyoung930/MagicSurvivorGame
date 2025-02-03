@@ -20,11 +20,15 @@ public class RandomCardSelector : MonoBehaviour
     public Sprite attackSpeedUpSprite; 
     public Sprite arrowLevelUpSprite; 
     public Sprite shieldLevelUpSprite; 
-    public Sprite spearLevelUpSprite; 
+    public Sprite spearLevelUpSprite;
+
+    private int speedLevel = 0;
+    private int damageLevel = 0;
+    private int playerSpeed = 0;
     
     [SerializeField] private GameObject upgradeUI; // Upgrade UI 추가
 
-    private int maxLevel = 2;
+    private int maxLevel = 5;
     public void Upgrade()
     {
         List<Sprite> selectedImages = GetRandomImages(images, 3);
@@ -93,6 +97,12 @@ public class RandomCardSelector : MonoBehaviour
             if (playerControl != null)
             {
                 playerControl.IncreaseSpeed(increaseSpeedAmount);
+                playerSpeed++;
+
+                if (playerSpeed >= maxLevel)
+                {
+                    RemoveImage(clickedSprite);
+                }
                 upgradeUI.SetActive(false);
                 Time.timeScale = 1;
             }
@@ -115,6 +125,12 @@ public class RandomCardSelector : MonoBehaviour
             if (spearSpawn != null)
             {
                 spearSpawn.DamageLevelUp();
+                damageLevel++;
+
+                if (damageLevel >= maxLevel)
+                {
+                    RemoveImage(clickedSprite);
+                }
                 upgradeUI.SetActive(false);
                 Time.timeScale = 1;
             }
@@ -137,6 +153,12 @@ public class RandomCardSelector : MonoBehaviour
             if (spearSpawn != null)
             {
                 spearSpawn.SpeedLevelUp();
+                speedLevel++;
+
+                if (speedLevel >= maxLevel)
+                {
+                    RemoveImage(clickedSprite);
+                }
                 upgradeUI.SetActive(false);
                 Time.timeScale = 1;
             }
